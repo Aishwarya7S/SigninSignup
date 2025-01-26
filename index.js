@@ -70,17 +70,6 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-app.post("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) res.status(500).json({ error: "Failed to logout" });
-      else res.status(200).json("Logout successful");
-    });
-  } else {
-    res.status(400).json({ error: "No session found" });
-  }
-});
-
 app.get("/user", (req, res) => {
   if (req.session.user) res.json({ user: req.session.user });
   else res.status(401).json("Not authenticated");

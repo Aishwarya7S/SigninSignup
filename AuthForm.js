@@ -17,7 +17,7 @@ function AuthForm() {
             .then((result) => {
                 if (result.status === 201) {
                     window.alert("User registered successfully.");
-                    navigate("/signin"); 
+                    navigate("/signin");
                 }
             })
             .catch((err) => {
@@ -35,7 +35,7 @@ function AuthForm() {
             .then(response => {
                 if (response.data === "Success") {
                     window.alert("Login Successfully");
-                    navigate("/mynavbar"); 
+                    navigate("/mynavbar");
                 } else {
                     window.alert("Invalid credentials");
                 }
@@ -50,55 +50,57 @@ function AuthForm() {
     };
 
     return (
-        <div className="container">
-            <div className="form-container">
-                <div className="form-toggle">
-                    <button className={isLogin ? 'active' : ''} onClick={() => setIsLogin(true)}> SignIn </button>
-                    <button className={!isLogin ? 'active' : ''} onClick={() => setIsLogin(false)}> SignUp </button>
+        <div className="auth-page">
+            <div className="container">
+                <div className="form-container">
+                    <div className="form-toggle">
+                        <button className={isLogin ? 'active' : ''} onClick={() => setIsLogin(true)}> SignIn </button>
+                        <button className={!isLogin ? 'active' : ''} onClick={() => setIsLogin(false)}> SignUp </button>
+                    </div>
+                    {isLogin ? (
+                        <div className="form">
+                            <h2>SignIn</h2>
+                            <input type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
+                            <button onClick={handleLogin}>SignIn</button>
+                            <p>
+                                Don't have an account?{' '}
+                                <NavLink to="/signup" onClick={() => setIsLogin(false)}>Signup </NavLink>
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="form">
+                            <h2>SignUp</h2>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)} />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
+                            <button onClick={handleSignup}>SignUp</button>
+                            <p>
+                                Already have an account?{' '}
+                                <NavLink to="/signin" onClick={() => setIsLogin(true)}>Signin </NavLink>
+                            </p>
+                        </div>
+                    )}
                 </div>
-                {isLogin ? (
-                    <div className="form">
-                        <h2>SignIn</h2>
-                        <input type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)} />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} />
-                        <button onClick={handleLogin}>SignIn</button>
-                        <p>
-                            Don't have an account?{' '}
-                            <NavLink to="/signup" onClick={() => setIsLogin(false)}>Signup </NavLink>
-                        </p>
-                    </div>
-                ) : (
-                    <div className="form">
-                        <h2>SignUp</h2>
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)} />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)} />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} />
-                        <button onClick={handleSignup}>SignUp</button>
-                        <p>
-                            Already have an account?{' '}
-                            <NavLink to="/signin" onClick={() => setIsLogin(true)}>Signin </NavLink>
-                        </p>
-                    </div>
-                )}
             </div>
         </div>
     );

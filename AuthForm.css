@@ -1,11 +1,11 @@
-body {
+.auth-page {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color:blue;
+    background-color: #0c84b3; 
   }
   
   .container {
